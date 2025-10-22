@@ -13,6 +13,11 @@ import { useGenerationHistory } from './hooks/useGenerationHistory';
 import { GeneratedContent, Tab } from './types';
 
 
+/**
+ * The main application component.
+ *
+ * @returns {JSX.Element} The rendered App component.
+ */
 function App() {
     const { activeTab, setActiveTab, toasts, dismissToast } = useAppContext();
     const { history, activeResult, addGeneration, setActiveById } = useGenerationHistory();

@@ -10,6 +10,15 @@ interface ResultCardProps {
     isLoadingPart: string | null;
 }
 
+/**
+ * A card that displays the generated content, with options to regenerate and copy parts of it.
+ *
+ * @param {object} props - The component props.
+ * @param {GeneratedContent} props.content - The generated content to display.
+ * @param {(part: keyof GeneratedContent | 'parameters', context: GeneratedContent) => Promise<void>} props.onRegenerate - The function to call when a part is regenerated.
+ * @param {string | null} props.isLoadingPart - The part that is currently being regenerated.
+ * @returns {JSX.Element} The rendered result card.
+ */
 export const ResultCard: React.FC<ResultCardProps> = ({ content, onRegenerate, isLoadingPart }) => {
     const { t } = useTranslation();
     const [copiedStates, setCopiedStates] = useState<Record<string, boolean>>({});

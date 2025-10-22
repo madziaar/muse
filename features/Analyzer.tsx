@@ -5,6 +5,11 @@ import { analyzeVideo } from '../services/geminiService';
 import { MAX_VIDEO_FILE_SIZE_BYTES } from '../lib/constants';
 import { VideoIcon, XCircleIcon, SparklesIcon } from '../components/Icons';
 
+/**
+ * A feature that allows users to upload a video and ask questions about it.
+ *
+ * @returns {JSX.Element} The rendered Analyzer component.
+ */
 export const Analyzer: React.FC = () => {
     const { t } = useTranslation();
     const { addToast, setMusePrompt, setActiveTab } = useAppContext();

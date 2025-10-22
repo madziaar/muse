@@ -1,3 +1,8 @@
+/**
+ * An array of music genres and their subgenres.
+ *
+ * @type {{name: string; subgenres: string[]}[]}
+ */
 export const genres = [
   {
     "name": "Alternative",

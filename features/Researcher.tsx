@@ -12,6 +12,11 @@ interface Source {
     }
 }
 
+/**
+ * A feature that allows users to research a topic and generate a prompt from the research.
+ *
+ * @returns {JSX.Element} The rendered Researcher component.
+ */
 export const Researcher: React.FC = () => {
     const { t } = useTranslation();
     const { addToast, setMusePrompt, setActiveTab } = useAppContext();

@@ -10,6 +10,14 @@ interface PromptInputProps {
     isLoading: boolean;
 }
 
+/**
+ * A component for inputting a prompt, with suggestions and ideas.
+ *
+ * @param {object} props - The component props.
+ * @param {() => void} props.onGenerate - The function to call when the generate button is clicked.
+ * @param {boolean} props.isLoading - Whether the generation is in progress.
+ * @returns {JSX.Element} The rendered prompt input component.
+ */
 export const PromptInput: React.FC<PromptInputProps> = ({ onGenerate, isLoading }) => {
     const { t } = useTranslation();
     const { musePrompt, setMusePrompt, addToast } = useAppContext();

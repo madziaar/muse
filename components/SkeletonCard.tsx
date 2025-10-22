@@ -1,5 +1,10 @@
 import React from 'react';
 
+/**
+ * A skeleton card component to be displayed while content is loading.
+ *
+ * @returns {JSX.Element} The rendered skeleton card.
+ */
 export const SkeletonCard: React.FC = () => {
     return (
         <div className="bg-gray-800/50 border border-gray-700 rounded-lg p-4 shadow-md animate-pulse">

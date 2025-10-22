@@ -5,6 +5,12 @@ interface VisualStructureProps {
     structure: string;
 }
 
+/**
+ * Returns an icon for a given song part.
+ *
+ * @param {string} part - The name of the song part.
+ * @returns {JSX.Element} The corresponding icon.
+ */
 const getIconForPart = (part: string) => {
     const lowerPart = part.toLowerCase();
     if (lowerPart.includes('verse')) return <MicIcon className="w-5 h-5" />;
@@ -14,6 +20,12 @@ const getIconForPart = (part: string) => {
     return <LyricsIcon className="w-5 h-5" />;
 };
 
+/**
+ * Returns a color class for a given song part.
+ *
+ * @param {string} part - The name of the song part.
+ * @returns {string} The corresponding color class.
+ */
 const getColorForPart = (part: string) => {
     const lowerPart = part.toLowerCase();
     if (lowerPart.includes('verse')) return 'bg-sky-800/50 text-sky-300 border-sky-600';
@@ -24,6 +36,13 @@ const getColorForPart = (part: string) => {
     return 'bg-gray-700 text-gray-300 border-gray-600';
 }
 
+/**
+ * A component that displays a visual representation of a song structure.
+ *
+ * @param {object} props - The component props.
+ * @param {string} props.structure - The song structure string.
+ * @returns {JSX.Element} The rendered visual structure.
+ */
 export const VisualStructure: React.FC<VisualStructureProps> = React.memo(({ structure }) => {
     const parts = structure.split(' - ');
 

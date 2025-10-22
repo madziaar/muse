@@ -8,6 +8,11 @@ import { XCircleIcon } from '../components/Icons';
 
 const MAX_TAGS_DISPLAY = 200;
 
+/**
+ * A feature that allows users to explore genres and tags to build a prompt.
+ *
+ * @returns {JSX.Element} The rendered Explorer component.
+ */
 export const Explorer: React.FC = () => {
     const { t } = useTranslation();
     const { addToast, setMusePrompt, setActiveTab } = useAppContext();

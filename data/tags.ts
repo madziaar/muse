@@ -1,3 +1,8 @@
+/**
+ * An array of tags used for music classification.
+ *
+ * @type {string[]}
+ */
 export const tags = [
   "pop",
   "electronic",
