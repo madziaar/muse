@@ -21,6 +21,16 @@ interface MuseProps {
     setActiveById: (id: string) => void;
 }
 
+/**
+ * The main feature of the application, allowing users to generate and refine creative assets.
+ *
+ * @param {object} props - The component props.
+ * @param {GeneratedContent[]} props.history - The history of generated content.
+ * @param {GeneratedContent | null} props.activeResult - The currently active generated content.
+ * @param {(newGeneration: GeneratedContent) => void} props.addGeneration - The function to add a new generation to the history.
+ * @param {(id: string) => void} props.setActiveById - The function to set the active generation by its ID.
+ * @returns {JSX.Element} The rendered Muse component.
+ */
 export const Muse: React.FC<MuseProps> = ({ history, activeResult, addGeneration, setActiveById }) => {
     const { addToast, musePrompt } = useAppContext();
     const { t, language } = useTranslation();

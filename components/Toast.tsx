@@ -7,6 +7,14 @@ interface ToastProps {
     onDismiss: () => void;
 }
 
+/**
+ * A component that displays a toast notification.
+ *
+ * @param {object} props - The component props.
+ * @param {ToastNotification} props.toast - The toast notification to display.
+ * @param {() => void} props.onDismiss - The function to call when the toast is dismissed.
+ * @returns {JSX.Element} The rendered toast component.
+ */
 export const Toast: React.FC<ToastProps> = ({ toast, onDismiss }) => {
     const [visible, setVisible] = useState(false);
 

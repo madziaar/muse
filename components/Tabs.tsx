@@ -2,6 +2,13 @@ import React from 'react';
 import { useAppContext } from '../hooks/useAppContext';
 import { AppContextType, Tab } from '../types';
 
+/**
+ * A component that displays a set of tabs for navigating between different views.
+ *
+ * @param {object} props - The component props.
+ * @param {Tab[]} props.tabs - An array of tab objects to display.
+ * @returns {JSX.Element} The rendered tabs component.
+ */
 export const Tabs: React.FC<{ tabs: Tab[] }> = ({ tabs }) => {
     const { activeTab, setActiveTab } = useAppContext();
 

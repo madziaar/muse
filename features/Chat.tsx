@@ -7,6 +7,13 @@ import { Chat as GeminiChat } from '@google/genai';
 import { LoadingSpinner } from '../components/LoadingSpinner';
 import { WandIcon } from '../components/Icons';
 
+/**
+ * A chat component that allows users to interact with a Gemini chat bot to generate music ideas.
+ *
+ * @param {object} props - The component props.
+ * @param {(content: GeneratedContent) => void} props.onGenerationComplete - The function to call when the generation is complete.
+ * @returns {JSX.Element} The rendered Chat component.
+ */
 export const Chat: React.FC<{ onGenerationComplete: (content: GeneratedContent) => void }> = ({ onGenerationComplete }) => {
     const { t, language } = useTranslation();
     const { addToast } = useAppContext();

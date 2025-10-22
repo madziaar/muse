@@ -1,3 +1,6 @@
+/**
+ * An object containing all the translations for the application.
+ */
 export const translations = {
     en: {
         tabMuse: 'Muse',

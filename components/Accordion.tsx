@@ -5,6 +5,14 @@ interface AccordionProps {
     children: ReactNode;
 }
 
+/**
+ * A collapsible accordion component that displays a title and content.
+ *
+ * @param {object} props - The component props.
+ * @param {string} props.title - The title of the accordion.
+ * @param {React.ReactNode} props.children - The content to be displayed within the accordion.
+ * @returns {JSX.Element} The rendered accordion component.
+ */
 export const Accordion: React.FC<AccordionProps> = ({ title, children }) => {
     const [isOpen, setIsOpen] = useState(false);
 

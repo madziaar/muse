@@ -4,6 +4,13 @@ import { translations } from '../lib/translations';
 import { Language } from '../types';
 
 // Helper for replacing placeholders like {name}
+/**
+ * A helper function to replace placeholders in a string with a given value.
+ *
+ * @param {string} str - The string to interpolate.
+ * @param {Record<string, string | number>} params - The parameters to replace.
+ * @returns {string} The interpolated string.
+ */
 const interpolate = (str: string, params: Record<string, string | number>): string => {
   let result = str;
   for (const key in params) {
@@ -13,6 +20,15 @@ const interpolate = (str: string, params: Record<string, string | number>): stri
 };
 
 
+/**
+ * A custom hook to handle translations.
+ *
+ * @returns {{
+ * t: (key: keyof typeof translations[Language], params?: Record<string, string | number>) => string;
+ * language: Language;
+ * setLanguage: React.Dispatch<React.SetStateAction<Language>>;
+ * }}
+ */
 export const useTranslation = () => {
   const context = useContext(LanguageContext);
   if (!context) {

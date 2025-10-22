@@ -9,19 +9,43 @@ interface State {
   error?: Error;
 }
 
+/**
+ * A React component that catches JavaScript errors anywhere in its child component tree,
+ * logs those errors, and displays a fallback UI instead of the component tree that crashed.
+ *
+ * @param {object} props - The component props.
+ * @param {React.ReactNode} props.children - The child components to render.
+ */
 export class ErrorBoundary extends Component<Props, State> {
   public state: State = {
     hasError: false,
   };
 
+  /**
+   * Updates the state so the next render will show the fallback UI.
+   *
+   * @param {Error} error - The error that was thrown.
+   * @returns {State} The new state.
+   */
   public static getDerivedStateFromError(error: Error): State {
     return { hasError: true, error };
   }
 
+  /**
+   * Logs the error to an error reporting service.
+   *
+   * @param {Error} error - The error that was thrown.
+   * @param {ErrorInfo} errorInfo - An object with a `componentStack` key containing information about which component threw the error.
+   */
   public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     console.error("Uncaught error:", error, errorInfo);
   }
 
+  /**
+   * Renders the fallback UI if an error has occurred, otherwise renders the children.
+   *
+   * @returns {React.ReactNode} The rendered component.
+   */
   public render() {
     if (this.state.hasError) {
       return (

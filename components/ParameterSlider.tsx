@@ -11,6 +11,20 @@ interface ParameterSliderProps {
     tooltip: string;
 }
 
+/**
+ * A slider component for adjusting a parameter.
+ *
+ * @param {object} props - The component props.
+ * @param {string} props.label - The label for the slider.
+ * @param {string} props.name - The name of the parameter.
+ * @param {number} props.value - The current value of the parameter.
+ * @param {(event: React.ChangeEvent<HTMLInputElement>) => void} props.onChange - The function to call when the value changes.
+ * @param {number} props.min - The minimum value of the slider.
+ * @param {number} props.max - The maximum value of the slider.
+ * @param {number} props.step - The step value of the slider.
+ * @param {string} props.tooltip - The tooltip to display on hover.
+ * @returns {JSX.Element} The rendered slider component.
+ */
 export const ParameterSlider: React.FC<ParameterSliderProps> = React.memo(({
     label,
     name,

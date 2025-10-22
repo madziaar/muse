@@ -6,8 +6,20 @@ interface LanguageContextType {
   setLanguage: React.Dispatch<React.SetStateAction<Language>>;
 }
 
+/**
+ * The language context.
+ *
+ * @type {React.Context<LanguageContextType | undefined>}
+ */
 export const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
+/**
+ * The provider for the language context.
+ *
+ * @param {object} props - The component props.
+ * @param {React.ReactNode} props.children - The child components.
+ * @returns {JSX.Element} The rendered provider.
+ */
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [language, setLanguage] = useState<Language>(() => {
     const savedLang = localStorage.getItem('riffusion-muse-language');

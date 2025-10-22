@@ -2,6 +2,11 @@ import React from 'react';
 import { useTranslation } from '../hooks/useTranslation';
 import { BrainCircuitIcon } from './Icons';
 
+/**
+ * A component to be displayed when there is no content to show.
+ *
+ * @returns {JSX.Element} The rendered empty state component.
+ */
 export const EmptyState: React.FC = () => {
     const { t } = useTranslation();
     return (
