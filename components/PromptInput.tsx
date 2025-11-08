@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from '../hooks/useTranslation';
 import { GenerateIcon, RefreshIcon, XCircleIcon } from './Icons';
-import { getNewIdeas, suggestTags } from '../services/geminiService';
+import { getNewIdeas, suggestTags } from '../services/ollamaService';
 import { useDebounce } from '../hooks/useDebounce';
 import { useAppContext } from '../hooks/useAppContext';
 

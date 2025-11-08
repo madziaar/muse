@@ -4,8 +4,8 @@ import { PromptInput } from './PromptInput';
 // Correct the import from AppContext
 import { AppProvider } from '../contexts/AppContext';
 
-// Mock the geminiService to avoid actual API calls
-vi.mock('../services/geminiService', () => ({
+// Mock the ollamaService to avoid actual API calls
+vi.mock('../services/ollamaService', () => ({
     getNewIdeas: vi.fn(),
     suggestTags: vi.fn(),
 }));
@@ -16,7 +16,7 @@ vi.mock('../hooks/useTranslation', () => ({
 }));
 
 // We need to import the mocked functions to control them in tests
-import { getNewIdeas, suggestTags } from '../services/geminiService';
+import { getNewIdeas, suggestTags } from '../services/ollamaService';
 
 // Updated renderComponent to use the correct provider and pass children
 const renderComponent = () => {

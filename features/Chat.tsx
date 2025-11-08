@@ -1,14 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from '../hooks/useTranslation';
 import { useAppContext } from '../hooks/useAppContext';
-import { startChat, generateAssetsFromChatHistory } from '../services/geminiService';
+import { startChat, generateAssetsFromChatHistory } from '../services/ollamaService';
 import { ChatMessage, GeneratedContent } from '../types';
-import { Chat as GeminiChat } from '@google/genai';
 import { LoadingSpinner } from '../components/LoadingSpinner';
 import { WandIcon } from '../components/Icons';
 
 /**
- * A chat component that allows users to interact with a Gemini chat bot to generate music ideas.
+ * A chat component that allows users to interact with a chat bot to generate music ideas.
  *
  * @param {object} props - The component props.
  * @param {(content: GeneratedContent) => void} props.onGenerationComplete - The function to call when the generation is complete.
@@ -17,7 +16,7 @@ import { WandIcon } from '../components/Icons';
 export const Chat: React.FC<{ onGenerationComplete: (content: GeneratedContent) => void }> = ({ onGenerationComplete }) => {
     const { t, language } = useTranslation();
     const { addToast } = useAppContext();
-    const [chat, setChat] = useState<GeminiChat | null>(null);
+    const [chat, setChat] = useState<((prompt: string) => Promise<string>) | null>(null);
     const [history, setHistory] = useState<ChatMessage[]>([]);
     const [input, setInput] = useState('');
     const [isLoading, setIsLoading] = useState(false);
@@ -25,11 +24,9 @@ export const Chat: React.FC<{ onGenerationComplete: (content: GeneratedContent) 
     const chatContainerRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        const initialHistory: ChatMessage[] = [{ role: 'model', parts: [{ text: t('chatWelcome') }] }];
+        const initialHistory: ChatMessage[] = [{ role: 'assistant', parts: [{ text: t('chatWelcome') }] }];
         setHistory(initialHistory);
-        const geminiHistory = initialHistory.map(m => ({ role: m.role, parts: m.parts }));
-        const chatSession = startChat(language, geminiHistory);
-        setChat(chatSession);
+        startChat(language, initialHistory).then(chatSession => setChat(() => chatSession));
     }, [language, t]);
 
     useEffect(() => {
@@ -46,15 +43,17 @@ export const Chat: React.FC<{ onGenerationComplete: (content: GeneratedContent) 
         setHistory(prev => [...prev, newUserMessage]);
 
         try {
-            const result = await chat.sendMessage({ message });
-            let responseText = result.text;
+            const responseText = await chat(message);
 
             if (responseText.includes('[COMPLETE]')) {
-                responseText = responseText.replace('[COMPLETE]', '').trim();
+                const cleanedText = responseText.replace('[COMPLETE]', '').trim();
                 setIsComplete(true);
+                const newModelMessage: ChatMessage = { role: 'assistant', parts: [{ text: cleanedText }] };
+                setHistory(prev => [...prev, newModelMessage]);
+            } else {
+                const newModelMessage: ChatMessage = { role: 'assistant', parts: [{ text: responseText }] };
+                setHistory(prev => [...prev, newModelMessage]);
             }
-            const newModelMessage: ChatMessage = { role: 'model', parts: [{ text: responseText }] };
-            setHistory(prev => [...prev, newModelMessage]);
         } catch (error) {
             addToast(String(error), 'error');
             setHistory(prev => prev.slice(0, -1)); // Remove user message on error

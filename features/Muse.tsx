@@ -4,7 +4,7 @@ import { ResultCard } from '../components/ResultCard';
 import { EmptyState } from '../components/EmptyState';
 import { SkeletonCard } from '../components/SkeletonCard';
 import { useAppContext } from '../hooks/useAppContext';
-import { generateCreativeAssets, refineCreativeAssets, regenerateLyrics, regenerateParameters, regenerateRiffusionPrompt, regenerateSongStructure } from '../services/geminiService';
+import { generateCreativeAssets, refineCreativeAssets, regenerateLyrics, regenerateParameters, regenerateRiffusionPrompt, regenerateSongStructure } from '../services/ollamaService';
 import { GeneratedContent, RiffusionParameters } from '../types';
 import { useTranslation } from '../hooks/useTranslation';
 import { Accordion } from '../components/Accordion';
