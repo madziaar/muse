@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { useTranslation } from '../hooks/useTranslation';
 import { useAppContext } from '../hooks/useAppContext';
-import { analyzeVideo } from '../services/geminiService';
+import { analyzeVideo } from '../services/ollamaService';
 import { MAX_VIDEO_FILE_SIZE_BYTES } from '../lib/constants';
 import { VideoIcon, XCircleIcon, SparklesIcon } from '../components/Icons';
 
